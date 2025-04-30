@@ -54,14 +54,57 @@ export default function SignupPage() {
     <div className="signup-page">
       <div className="signup-container">
         <h1 className="signup-heading">Create an Account</h1>
-        <form onSubmit={handleSubmit} className="signup-form">
-          <input type="text" name="first_name" placeholder="First Name" value={formData.first_name} onChange={handleChange} required />
-          <input type="text" name="last_name" placeholder="Last Name" value={formData.last_name} onChange={handleChange} required />
-          <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required />
-          <input type="text" name="username" placeholder="Username" value={formData.username} onChange={handleChange} required />
-          <input type="date" name="birthday" placeholder="Birthday" value={formData.birthday} onChange={handleChange} required />
-          <button type="submit" className="signup-button">Sign Up</button>
-        </form>
+        <form onSubmit={handleSubmit} className="signup-form" data-cy="signup-form">
+  <input
+    type="text"
+    name="first_name"
+    placeholder="First Name"
+    value={formData.first_name}
+    onChange={handleChange}
+    required
+    data-cy="signup-first-name"
+  />
+  <input
+    type="text"
+    name="last_name"
+    placeholder="Last Name"
+    value={formData.last_name}
+    onChange={handleChange}
+    required
+    data-cy="signup-last-name"
+  />
+  <input
+    type="email"
+    name="email"
+    placeholder="Email"
+    value={formData.email}
+    onChange={handleChange}
+    required
+    data-cy="signup-email"
+  />
+  <input
+    type="text"
+    name="username"
+    placeholder="Username"
+    value={formData.username}
+    onChange={handleChange}
+    required
+    data-cy="signup-username"
+  />
+  <input
+    type="date"
+    name="birthday"
+    placeholder="Birthday"
+    value={formData.birthday}
+    onChange={handleChange}
+    required
+    data-cy="signup-birthday"
+  />
+  <button type="submit" className="signup-button" data-cy="signup-submit">
+    Sign Up
+  </button>
+</form>
+
       </div>
     </div>
   )

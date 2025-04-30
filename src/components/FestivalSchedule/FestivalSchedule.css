@@ -19,6 +19,7 @@
 }
 
 .show-card {
+  position: relative;
   background-color: #202020;
   color: white;
   padding: 1.25rem;
@@ -30,4 +31,29 @@
 .show-card:hover {
   background-color: #3b82f6;
   transform: scale(1.03);
+}
+
+.add-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #de0000;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 1rem;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  box-shadow: 0 0 8px rgba(255, 110, 196, 0.4);
+  padding: 0;
+}
+
+.add-button:hover {
+  background-color: #14ff5a;
+  transform: scale(1.1);
 }
