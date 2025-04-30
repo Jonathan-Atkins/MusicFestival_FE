@@ -1,9 +1,19 @@
-import { useLocation, NavLink } from 'react-router-dom'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import './NavBar.css'
 
 export default function NavBar() {
   const location = useLocation()
+  const navigate = useNavigate()
+  const user = JSON.parse(localStorage.getItem('user'))
   const isHome = location.pathname === '/'
+
+  const handleClick = () => {
+    if (user) {
+      navigate(`/users/${user.id}/schedules/${user.schedule_id}`)
+    } else {
+      navigate('/login')
+    }
+  }
 
   return (
     <nav className="navbar">
@@ -11,7 +21,9 @@ export default function NavBar() {
         HAPPY FEET
       </NavLink>
       {isHome && (
-        <button className="navbar-login">Login</button>
+        <button className="navbar-login" onClick={handleClick}>
+          {user ? 'See Your Schedule' : 'Login'}
+        </button>
       )}
     </nav>
   )
