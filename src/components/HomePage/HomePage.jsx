@@ -18,9 +18,10 @@ export default function HomePage() {
       <ul className="festival-list">
         {festivals.map(festival => (
           <li className="festival-card" key={festival.id}>
-            <h2>
-              {festival.attributes.name}
-            </h2>
+            <h2>{festival.attributes.name}</h2>
+            <p className="artist-list">
+            Featuring: {festival.attributes.artists.slice(0, 3).join(', ')}
+            </p>
             <p>{festival.attributes.attendee_count} attendees</p>
             <NavLink to={`/festivals/${festival.id}`}>
               <button className="festival-cta pulse">Explore Lineup</button>
