@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom'
+import { useLocation, NavLink } from 'react-router-dom'
 import './NavBar.css'
 
 export default function NavBar() {
@@ -7,7 +7,9 @@ export default function NavBar() {
 
   return (
     <nav className="navbar">
-      <span className="navbar-title">HAPPY FEET</span>
+      <NavLink to="/" className="navbar-title">
+        HAPPY FEET
+      </NavLink>
       {isHome && (
         <button className="navbar-login">Login</button>
       )}
