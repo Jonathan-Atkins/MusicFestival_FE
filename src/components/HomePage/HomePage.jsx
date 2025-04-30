@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import './HomePage.css'
 
 export default function HomePage() {
   const [festivals, setFestivals] = useState([])
@@ -10,15 +11,19 @@ export default function HomePage() {
       .then(data => setFestivals(data.data))
       .catch(err => console.error('Error fetching festivals:', err))
   }, [])
-console.log("Festivals:", festivals)
+
   return (
     <div style={{ padding: '2rem' }}>
-      <h1>Available Festivals</h1>
-      <ul>
+      <h1 className="gradient-header">Available Festivals</h1>
+      <ul className="festival-list">
         {festivals.map(festival => (
-          <li key={festival.id}>
+          <li className="festival-card" key={festival.id}>
+            <h2>
+              {festival.attributes.name}
+            </h2>
+            <p>{festival.attributes.attendee_count} attendees</p>
             <NavLink to={`/festivals/${festival.id}`}>
-              {festival.attributes.name} ({festival.attributes.attendee_count} attendees)
+              <button className="festival-cta pulse">Explore Lineup</button>
             </NavLink>
           </li>
         ))}
