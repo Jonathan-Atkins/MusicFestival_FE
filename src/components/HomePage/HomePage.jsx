@@ -13,18 +13,18 @@ export default function HomePage() {
   }, [])
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <h1 className="gradient-header">Available Festivals</h1>
-      <ul className="festival-list">
+    <div style={{ padding: '2rem' }} data-cy="homepage">
+      <h1 className="gradient-header" data-cy="page-header">Available Festivals</h1>
+      <ul className="festival-list" data-cy="festival-list">
         {festivals.map(festival => (
-          <li className="festival-card" key={festival.id}>
-            <h2>{festival.attributes.name}</h2>
-            <p className="artist-list">
-            Featuring: {festival.attributes.artists.slice(0, 3).join(', ')}
+          <li className="festival-card" key={festival.id} data-cy="festival-card">
+            <h2 data-cy="festival-name">{festival.attributes.name}</h2>
+            <p className="artist-list" data-cy="festival-artists">
+              Featuring: {festival.attributes.artists.slice(0, 3).join(', ')}
             </p>
-            <p>{festival.attributes.attendee_count} attendees</p>
+            <p data-cy="festival-attendees">{festival.attributes.attendee_count} attendees</p>
             <NavLink to={`/festivals/${festival.id}`}>
-              <button className="festival-cta pulse">Explore Lineup</button>
+              <button className="festival-cta pulse" data-cy="explore-button">Explore Lineup</button>
             </NavLink>
           </li>
         ))}
