@@ -46,3 +46,19 @@
 .home-icon:hover {
   transform: scale(1.1);
 }
+
+.navbar-home-button {
+  margin-left: auto;
+  margin-right: 1rem;
+  color: white;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.navbar-home-button:hover {
+  color: #ff6ec4;
+}
