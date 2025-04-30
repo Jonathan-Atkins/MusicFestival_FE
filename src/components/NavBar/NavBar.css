@@ -32,3 +32,17 @@
   transform: scale(1.05);
   opacity: 0.9;
 }
+
+
+.home-icon {
+  font-size: 1.5rem;
+  color: white;
+  margin-left: auto;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: transform 0.2s ease;
+}
+
+.home-icon:hover {
+  transform: scale(1.1);
+}

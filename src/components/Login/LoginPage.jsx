@@ -6,11 +6,27 @@ export default function LoginPage() {
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
 
-  const handleLogin = () => {
-    // dummy login logic
-    if (email) {
-      localStorage.setItem('user', JSON.stringify({ email }))
-      navigate('/')
+  const handleLogin = async () => {
+    try {
+      const res = await fetch(`http://localhost:3000/api/v1/users/find?email=${email}`)
+      const data = await res.json()
+  
+      if (res.ok) {
+        const user = {
+          id: data.data.id,
+          ...data.data.attributes
+        }
+  
+        localStorage.setItem('user', JSON.stringify(user))
+  
+        // Redirect to their schedule page
+        navigate(`/users/${user.id}/schedules/${user.schedule_id}`)
+      } else {
+        alert('User not found. Please sign up.')
+      }
+    } catch (err) {
+      console.error('Login error:', err)
+      alert('Something went wrong.')
     }
   }
 

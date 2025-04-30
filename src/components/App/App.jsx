@@ -3,6 +3,7 @@ import HomePage from '../HomePage/HomePage'
 import FestivalSchedule from '../FestivalSchedule/FestivalSchedule'
 import LoginPage from '../Login/LoginPage'
 import NavBar from '../NavBar/NavBar'
+import UserSchedule from '../UserSchedule/UserSchedule'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/festivals/:id" element={<FestivalSchedule />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/users/:userId/schedules/:scheduleId" element={<UserSchedule />} />
       </Routes>
     </>
   )

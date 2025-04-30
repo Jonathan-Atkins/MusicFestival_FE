@@ -14,7 +14,7 @@ export default function FestivalSchedule() {
   }, [id])
 
   return (
-    <div style={{ padding: '2rem' }}>
+    <div className="schedule-page">
       <h1 className="gradient-header" data-cy="schedule-header">Festival Schedule</h1>
       <ul className="show-list" data-cy="show-list">
         {shows.map(show => (

@@ -5,6 +5,8 @@ export default function NavBar() {
   const location = useLocation()
   const navigate = useNavigate()
   const user = JSON.parse(localStorage.getItem('user'))
+  const isHome = location.pathname === '/'
+  const isLogin = location.pathname === '/login'
 
   const handleClick = () => {
     if (user) {
@@ -19,9 +21,18 @@ export default function NavBar() {
       <NavLink to="/" className="navbar-title">
         HAPPY FEET
       </NavLink>
-      <button className="navbar-login" onClick={handleClick}>
-        {user ? 'See Your Schedule' : 'Login'}
-      </button>
+
+      {isLogin && (
+        <NavLink to="/" className="home-icon" title="Go Home">
+          🏠
+        </NavLink>
+      )}
+
+      {isHome && (
+        <button className="navbar-login" onClick={handleClick}>
+          {user ? 'See Your Schedule' : 'Login'}
+        </button>
+      )}
     </nav>
   )
 }
