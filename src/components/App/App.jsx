@@ -1,14 +1,17 @@
-// App.jsx
 import { Routes, Route } from 'react-router-dom'
-import HomePage from '../HomePage/HomePage.jsx'
-// import FestivalSchedule from '../FestivalSchedule/FestivalSchedule.jsx'
+import HomePage from '../HomePage/HomePage'
+// import FestivalSchedule from '../FestivalSchedule/FestivalSchedule'
+import NavBar from '../NavBar/NavBar'
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      {/* <Route path="/festivals/:id" element={<FestivalSchedule />} /> */}
-    </Routes>
+    <>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        {/* <Route path="/festivals/:id" element={<FestivalSchedule />} /> */}
+      </Routes>
+    </>
   )
 }
 
