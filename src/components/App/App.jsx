@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import HomePage from '../HomePage/HomePage'
-// import FestivalSchedule from '../FestivalSchedule/FestivalSchedule'
+import FestivalSchedule from '../FestivalSchedule/FestivalSchedule'
 import NavBar from '../NavBar/NavBar'
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        {/* <Route path="/festivals/:id" element={<FestivalSchedule />} /> */}
+        <Route path="/festivals/:id" element={<FestivalSchedule />} />
       </Routes>
     </>
   )

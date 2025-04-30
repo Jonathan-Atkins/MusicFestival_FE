@@ -1,0 +1,21 @@
+.show-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+}
+
+.show-card {
+  background-color: #202020;
+  color: white;
+  padding: 1.25rem;
+  border-radius: 12px;
+  width: 300px;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.show-card:hover {
+  background-color: #3b82f6;
+  transform: scale(1.03);
+}
