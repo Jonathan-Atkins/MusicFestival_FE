@@ -14,7 +14,7 @@ describe('Signup Page', () => {
     cy.get('[data-cy="signup-birthday"]').type('1995-08-15')
     cy.get('[data-cy="signup-submit"]').click()
 
-    // cy.url().should('include', '/users/')
-    // cy.url().should('include', '/schedules/')
+    cy.url().should('include', '/users/')
+    cy.url().should('include', '/schedules/')
   })
 })

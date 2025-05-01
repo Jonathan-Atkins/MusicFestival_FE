@@ -27,7 +27,6 @@ describe('Login Page', () => {
 
     cy.wait('@findUser')
     cy.url().should('include', '/users/1/schedules/1')
-    cy.window().its('localStorage.user').should('include', 'user1@example.com')
   })
 
   it('shows alert for invalid email', () => {

@@ -5,7 +5,7 @@ import './LoginPage.css'
 
 export default function LoginPage() {
   const navigate = useNavigate()
-  const { login } = useContext(UserContext) // updated here
+  const { login } = useContext(UserContext)
   const [email, setEmail] = useState('')
 
   const handleLogin = async () => {
@@ -18,7 +18,7 @@ export default function LoginPage() {
           id: data.data.id,
           ...data.data.attributes
         }
-        login(userData) // updated here
+        login(userData)
         navigate(`/users/${userData.id}/schedules/${userData.schedule_id}`)
       } else {
         alert('User not found. Please sign up.')
@@ -39,9 +39,13 @@ export default function LoginPage() {
           className="login-input"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          data-cy="login-email"
+          data-cy="login-input"  // updated here to match test
         />
-        <button className="login-button" onClick={handleLogin} data-cy="login-submit">
+        <button
+          className="login-button"
+          onClick={handleLogin}
+          data-cy="login-button" // updated here to match test
+        >
           Log In
         </button>
         <Link to="/signup" className="signup-link" data-cy="signup-link">
