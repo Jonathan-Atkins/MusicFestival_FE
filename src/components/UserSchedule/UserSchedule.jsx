@@ -15,6 +15,27 @@ export default function UserSchedule() {
       .catch(err => console.error('Error fetching schedule:', err))
   }, [user])
 
+  const handleRemoveShow = async (showId) => {
+    if (!user || !user.id || !user.schedule_id) return
+
+    try {
+      const res = await fetch(`http://localhost:3000/api/v1/users/${user.id}/schedules/${user.schedule_id}/shows/${showId}`, {
+        method: 'DELETE'
+      })
+
+      if (res.ok) {
+        alert('Show removed from your schedule!')
+        // Remove from state to update UI
+        setShows(prev => prev.filter(show => show.id !== showId.toString()))
+      } else {
+        alert('Something went wrong while removing the show.')
+      }
+    } catch (err) {
+      console.error('Error removing show:', err)
+      alert('An error occurred. Try again.')
+    }
+  }
+
   return (
     <div className="schedule-page">
       <h1 className="gradient-header" data-cy="schedule-header">Your Schedule</h1>
@@ -26,8 +47,8 @@ export default function UserSchedule() {
             <li className="show-card" key={show.id} data-cy="show-card">
               <button
                 className="remove-button"
+                onClick={() => handleRemoveShow(show.id)}
                 title="Remove from Schedule"
-                // functionality to be added later
               >
                 −
               </button>
