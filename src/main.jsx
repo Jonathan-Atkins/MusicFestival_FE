@@ -1,15 +1,15 @@
-localStorage.removeItem('user') // Ensure clean state on first load
-
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
 import App from './components/App/App.jsx'
-import './index.css'
+import { BrowserRouter } from 'react-router-dom'
+import { UserProvider } from './context/UserContext' 
 
-createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
-    <StrictMode>
-      <App />
-    </StrictMode>
-  </BrowserRouter>
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <UserProvider> 
+        <App />
+      </UserProvider>
+    </BrowserRouter>
+  </React.StrictMode>
 )

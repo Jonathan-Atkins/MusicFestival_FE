@@ -1,13 +1,16 @@
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
+import { UserContext } from '../../context/UserContext'
 import './NavBar.css'
 
 export default function NavBar() {
   const location = useLocation()
   const navigate = useNavigate()
-  const user = JSON.parse(localStorage.getItem('user'))
+  const { user } = useContext(UserContext)
+
   const isHome = location.pathname === '/'
-  const isLogin = location.pathname === '/login'
-  const isUserSchedule = location.pathname.includes('/users/') && location.pathname.includes('/schedules/')
+  const isLoginPage = location.pathname === '/login'
+  const isSignupPage = location.pathname === '/signup'
 
   const handleClick = () => {
     if (user) {
@@ -19,26 +22,20 @@ export default function NavBar() {
 
   return (
     <nav className="navbar">
-      <NavLink to="/" className="navbar-title">
+      <NavLink to="/" className="navbar-title" data-cy="navbar-home">
         HAPPY FEET
       </NavLink>
 
-      {isLogin && (
-        <NavLink to="/" className="navbar-home-button">
-          🏠 
-        </NavLink>
-      )}
-
-      {isHome && (
-        <button className="navbar-login" onClick={handleClick}>
-          {user ? 'See Your Schedule' : 'Login'}
+      {isLoginPage && (
+        <button className="navbar-home-button" onClick={() => navigate('/')}>
+          🏠
         </button>
       )}
 
-      {isUserSchedule && (
-        <NavLink to="/" className="navbar-home-button">
-          🏠
-        </NavLink>
+      {isHome && !isLoginPage && !isSignupPage && (
+        <button className="navbar-login" onClick={handleClick}>
+          {user ? 'See Your Schedule' : 'Login'}
+        </button>
       )}
     </nav>
   )

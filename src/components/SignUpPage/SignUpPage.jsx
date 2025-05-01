@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useUser } from '../../context/UserContext'
 import './SignupPage.css'
 
 export default function SignupPage() {
   const navigate = useNavigate()
+  const { setUser } = useUser()
   const [formData, setFormData] = useState({
     first_name: '',
     last_name: '',
@@ -39,7 +41,7 @@ export default function SignupPage() {
           ...data.data.attributes
         }
 
-        localStorage.setItem('user', JSON.stringify(user))
+        setUser(user)  // ✅ use context instead of localStorage
         navigate(`/users/${user.id}/schedules/${user.schedule_id}`)
       } else {
         alert(data.errors?.join(', ') || 'Signup failed.')
@@ -55,56 +57,13 @@ export default function SignupPage() {
       <div className="signup-container">
         <h1 className="signup-heading">Create an Account</h1>
         <form onSubmit={handleSubmit} className="signup-form" data-cy="signup-form">
-  <input
-    type="text"
-    name="first_name"
-    placeholder="First Name"
-    value={formData.first_name}
-    onChange={handleChange}
-    required
-    data-cy="signup-first-name"
-  />
-  <input
-    type="text"
-    name="last_name"
-    placeholder="Last Name"
-    value={formData.last_name}
-    onChange={handleChange}
-    required
-    data-cy="signup-last-name"
-  />
-  <input
-    type="email"
-    name="email"
-    placeholder="Email"
-    value={formData.email}
-    onChange={handleChange}
-    required
-    data-cy="signup-email"
-  />
-  <input
-    type="text"
-    name="username"
-    placeholder="Username"
-    value={formData.username}
-    onChange={handleChange}
-    required
-    data-cy="signup-username"
-  />
-  <input
-    type="date"
-    name="birthday"
-    placeholder="Birthday"
-    value={formData.birthday}
-    onChange={handleChange}
-    required
-    data-cy="signup-birthday"
-  />
-  <button type="submit" className="signup-button" data-cy="signup-submit">
-    Sign Up
-  </button>
-</form>
-
+          <input type="text" name="first_name" placeholder="First Name" value={formData.first_name} onChange={handleChange} required data-cy="signup-first-name" />
+          <input type="text" name="last_name" placeholder="Last Name" value={formData.last_name} onChange={handleChange} required data-cy="signup-last-name" />
+          <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required data-cy="signup-email" />
+          <input type="text" name="username" placeholder="Username" value={formData.username} onChange={handleChange} required data-cy="signup-username" />
+          <input type="date" name="birthday" placeholder="Birthday" value={formData.birthday} onChange={handleChange} required data-cy="signup-birthday" />
+          <button type="submit" className="signup-button" data-cy="signup-submit">Sign Up</button>
+        </form>
       </div>
     </div>
   )
