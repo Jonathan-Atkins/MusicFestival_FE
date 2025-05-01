@@ -8,7 +8,6 @@ export default function NavBar() {
   const navigate = useNavigate()
   const { user } = useContext(UserContext)
 
-  const isHome = location.pathname === '/'
   const isLoginPage = location.pathname === '/login'
   const isSignupPage = location.pathname === '/signup'
 
@@ -32,7 +31,7 @@ export default function NavBar() {
         </button>
       )}
 
-      {isHome && !isLoginPage && !isSignupPage && (
+      {!isLoginPage && !isSignupPage && (
         <button className="navbar-login" onClick={handleClick}>
           {user ? 'See Your Schedule' : 'Login'}
         </button>

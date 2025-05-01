@@ -6,13 +6,17 @@ export default function UserSchedule() {
   const { user } = useContext(UserContext)
   const [shows, setShows] = useState([])
 
-  useEffect(() => {
+  const fetchSchedule = () => {
     if (!user || !user.id || !user.schedule_id) return
 
     fetch(`http://localhost:3000/api/v1/users/${user.id}/schedules/${user.schedule_id}/shows`)
       .then(res => res.json())
       .then(data => setShows(data.data))
       .catch(err => console.error('Error fetching schedule:', err))
+  }
+
+  useEffect(() => {
+    fetchSchedule()
   }, [user])
 
   const handleRemoveShow = async (showId) => {
@@ -25,8 +29,7 @@ export default function UserSchedule() {
 
       if (res.ok) {
         alert('Show removed from your schedule!')
-        // Remove from state to update UI
-        setShows(prev => prev.filter(show => show.id !== showId.toString()))
+        fetchSchedule() // 🔁 Refresh the full schedule list
       } else {
         alert('Something went wrong while removing the show.')
       }
