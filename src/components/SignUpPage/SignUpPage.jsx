@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useUser } from '../../context/UserContext'
+import { UserContext } from '../../context/UserContext'
 import './SignupPage.css'
 
 export default function SignupPage() {
   const navigate = useNavigate()
-  const { setUser } = useUser()
+  const { login } = useContext(UserContext)
   const [formData, setFormData] = useState({
     first_name: '',
     last_name: '',
@@ -41,7 +41,7 @@ export default function SignupPage() {
           ...data.data.attributes
         }
 
-        setUser(user)  // ✅ use context instead of localStorage
+        login(user) // replaced localStorage.setItem
         navigate(`/users/${user.id}/schedules/${user.schedule_id}`)
       } else {
         alert(data.errors?.join(', ') || 'Signup failed.')
