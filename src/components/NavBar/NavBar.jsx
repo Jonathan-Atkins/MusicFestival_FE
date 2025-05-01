@@ -10,9 +10,12 @@ export default function NavBar() {
 
   const isLoginPage = location.pathname === '/login'
   const isSignupPage = location.pathname === '/signup'
+  const isUserSchedulePage = location.pathname.includes('/users/') && location.pathname.includes('/schedules/')
 
   const handleClick = () => {
-    if (user) {
+    if (isUserSchedulePage) {
+      navigate('/') // Show All Festivals
+    } else if (user) {
       navigate(`/users/${user.id}/schedules/${user.schedule_id}`)
     } else {
       navigate('/login')
@@ -33,7 +36,7 @@ export default function NavBar() {
 
       {!isLoginPage && !isSignupPage && (
         <button className="navbar-login" onClick={handleClick}>
-          {user ? 'See Your Schedule' : 'Login'}
+          {isUserSchedulePage ? 'Show All Festivals' : user ? 'See Your Schedule' : 'Login'}
         </button>
       )}
     </nav>
